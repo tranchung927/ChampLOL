@@ -13,7 +13,11 @@
 		3B6937EA1F74A52200B2569B /* ChampLOL.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B6937E81F74A52200B2569B /* ChampLOL.xcdatamodeld */; };
 		3B6937EC1F74A52200B2569B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B6937EB1F74A52200B2569B /* Assets.xcassets */; };
 		3B6937EF1F74A52200B2569B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B6937ED1F74A52200B2569B /* LaunchScreen.storyboard */; };
-		3B6937F71F74A57E00B2569B /* ChampModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6937F61F74A57E00B2569B /* ChampModel.swift */; };
+		3B6937F71F74A57E00B2569B /* Champ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6937F61F74A57E00B2569B /* Champ.swift */; };
+		3B6937FD1F74A9B300B2569B /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6937FC1F74A9B300B2569B /* DataServices.swift */; };
+		3B6938001F74AE9700B2569B /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6937FF1F74AE9700B2569B /* Cache.swift */; };
+		3B6938021F74AF7700B2569B /* IconDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6938011F74AF7700B2569B /* IconDownloader.swift */; };
+		3B6938041F74B43200B2569B /* Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6938031F74B43200B2569B /* Crop.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +29,11 @@
 		3B6937EB1F74A52200B2569B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B6937EE1F74A52200B2569B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B6937F01F74A52200B2569B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3B6937F61F74A57E00B2569B /* ChampModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChampModel.swift; sourceTree = "<group>"; };
+		3B6937F61F74A57E00B2569B /* Champ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Champ.swift; sourceTree = "<group>"; };
+		3B6937FC1F74A9B300B2569B /* DataServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
+		3B6937FF1F74AE9700B2569B /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		3B6938011F74AF7700B2569B /* IconDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconDownloader.swift; sourceTree = "<group>"; };
+		3B6938031F74B43200B2569B /* Crop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crop.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +78,8 @@
 			isa = PBXGroup;
 			children = (
 				3B6937E81F74A52200B2569B /* ChampLOL.xcdatamodeld */,
-				3B6937F61F74A57E00B2569B /* ChampModel.swift */,
+				3B6937F61F74A57E00B2569B /* Champ.swift */,
+				3B6937FE1F74AE7F00B2569B /* Services */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -100,6 +109,17 @@
 				3B6937F01F74A52200B2569B /* Info.plist */,
 			);
 			name = Support;
+			sourceTree = "<group>";
+		};
+		3B6937FE1F74AE7F00B2569B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3B6937FC1F74A9B300B2569B /* DataServices.swift */,
+				3B6937FF1F74AE9700B2569B /* Cache.swift */,
+				3B6938031F74B43200B2569B /* Crop.swift */,
+				3B6938011F74AF7700B2569B /* IconDownloader.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,9 +194,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B6937FD1F74A9B300B2569B /* DataServices.swift in Sources */,
+				3B6938041F74B43200B2569B /* Crop.swift in Sources */,
+				3B6938021F74AF7700B2569B /* IconDownloader.swift in Sources */,
 				3B6937EA1F74A52200B2569B /* ChampLOL.xcdatamodeld in Sources */,
-				3B6937F71F74A57E00B2569B /* ChampModel.swift in Sources */,
+				3B6937F71F74A57E00B2569B /* Champ.swift in Sources */,
 				3B6937E41F74A52200B2569B /* ViewController.swift in Sources */,
+				3B6938001F74AE9700B2569B /* Cache.swift in Sources */,
 				3B6937E21F74A52200B2569B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
