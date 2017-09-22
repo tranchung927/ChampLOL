@@ -13,12 +13,13 @@ class ViewController: UIViewController {
     let champIconSize = CGSize(width: 48, height: 48)
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var isLoad: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         registerNotification()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         terminateAllDownload()
@@ -33,7 +34,7 @@ class ViewController: UIViewController {
         allDownloads.forEach {$0.cancelDownload()}
         imageDownloadsInProgress.removeAll()
     }
-
+    
     func registerNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleNotification), name: NotificationKey.didUpdateChamps, object: nil)
     }
@@ -46,7 +47,7 @@ class ViewController: UIViewController {
         DispatchQueue.main.async(execute: {
             self.tableView.reloadData()
         })
-
+        
     }
 }
 
@@ -55,38 +56,39 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataServices.share.isNeedLoadMore ? DataServices.share.characters.count + 1 : DataServices.share.characters.count
+        return DataServices.share.characters.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case DataServices.share.characters.count:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadMore", for: indexPath)
-            DataServices.share.updateChamp()
-            return cell
-        default:
-            let character = DataServices.share.characters[indexPath.row]
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
-            cell.name.text = character.nameEN_Champ
-            cell.info.text = character.nameVN_Champ
-            cell.level.text = "Độ khó: \(character.level_Champ)"
-            
-            if character.iconChamp != nil {
-                if let image = Cache.images.object(forKey: "\(character.url_Champ)" as NSString) as? UIImage {
-                    cell.icon.image = image
-                } else {
-                    if let image = UIImage(data: character.iconChamp!)?.cropIfNeed(aspectFillToSize: champIconSize) {
-                        Cache.images.setObject(image, forKey: "\(character.url_Champ)" as NSString)
-                        cell.icon.image = image
-                    }
-                }
+        let character = DataServices.share.characters[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
+        cell.name.text = character.nameEN_Champ
+        cell.info.text = character.nameVN_Champ
+        cell.level.text = "Độ khó: \(character.level_Champ)"
+        
+        if character.iconChamp != nil {
+            if let image = Cache.images.object(forKey: "\(character.url_Champ)" as NSString) as? UIImage {
+                cell.icon.image = image
             } else {
-                if (self.tableView.isDragging == false && self.tableView.isDecelerating == false) {
-                    self.startDownloadIcon(for: character, at: indexPath)
+                if let image = UIImage(data: character.iconChamp!)?.cropIfNeed(aspectFillToSize: champIconSize) {
+                    Cache.images.setObject(image, forKey: "\(character.url_Champ)" as NSString)
+                    cell.icon.image = image
                 }
-                cell.icon.image = UIImage(named: "Placeholder.png")
             }
+        } else {
+            if (self.tableView.isDragging == false && self.tableView.isDecelerating == false) {
+                self.startDownloadIcon(for: character, at: indexPath)
+            }
+            cell.icon.image = UIImage(named: "Placeholder.png")
+        }
+        
+        return cell
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == DataServices.share.characters.count - 1{
             
-            return cell
+            DataServices.share.isNeedLoadMore ? isLoad.startAnimating() : isLoad.stopAnimating()
+            
+            DataServices.share.updateChamp()
         }
     }
 }
@@ -107,10 +109,6 @@ extension ViewController: UIScrollViewDelegate {
 // MARK: Load Image
 extension ViewController {
     func startDownloadIcon(for character: Character, at indexPath: IndexPath) {
-        
-        // Nếu iconDownloader đã có rồi thì dùng luôn.
-        // Chưa có thì khởi tạo cho lần sau dùng lại
-        
         var iconDowloader = imageDownloadsInProgress[indexPath.row]
         if iconDowloader == nil {
             iconDowloader = IconDownloader()
@@ -121,6 +119,8 @@ extension ViewController {
                     return
                 }
                 cell?.icon.image = image
+                self.isLoad.stopAnimating()
+                self.isLoad.hidesWhenStopped = true
             }
             imageDownloadsInProgress[indexPath.row] = iconDowloader
         }
@@ -128,13 +128,16 @@ extension ViewController {
     }
     func loadImagesForOnscreenRows() {
         guard DataServices.share.characters.count > 0 else {return}
-        let visiblePaths = tableView.indexPathsForVisibleRows
-        visiblePaths?.forEach {[unowned self] indexPath in
+        guard let visiblePaths = tableView.indexPathsForVisibleRows else {
+            return
+        }
+        visiblePaths.forEach {[unowned self] indexPath in
             let charactor = DataServices.share.characters[indexPath.row]
+            print(indexPath.row)
             if charactor.url_Champ != "" {
                 self.startDownloadIcon(for: charactor, at: indexPath)
             }
         }
     }
-
+    
 }

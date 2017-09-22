@@ -39,7 +39,5 @@ class ImageView: UIImageView {
             self.contentMode = .scaleAspectFill
         }
     }
-    
-    
 }
 
