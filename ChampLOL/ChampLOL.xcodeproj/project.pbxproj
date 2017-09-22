@@ -18,6 +18,8 @@
 		3B6938001F74AE9700B2569B /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6937FF1F74AE9700B2569B /* Cache.swift */; };
 		3B6938021F74AF7700B2569B /* IconDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6938011F74AF7700B2569B /* IconDownloader.swift */; };
 		3B6938041F74B43200B2569B /* Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6938031F74B43200B2569B /* Crop.swift */; };
+		3B6938061F74C39400B2569B /* ImageExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6938051F74C39400B2569B /* ImageExtention.swift */; };
+		3B6938081F74C4EC00B2569B /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6938071F74C4EC00B2569B /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		3B6937FF1F74AE9700B2569B /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		3B6938011F74AF7700B2569B /* IconDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconDownloader.swift; sourceTree = "<group>"; };
 		3B6938031F74B43200B2569B /* Crop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crop.swift; sourceTree = "<group>"; };
+		3B6938051F74C39400B2569B /* ImageExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageExtention.swift; sourceTree = "<group>"; };
+		3B6938071F74C4EC00B2569B /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,7 @@
 			children = (
 				3B6937E51F74A52200B2569B /* Main.storyboard */,
 				3B6937ED1F74A52200B2569B /* LaunchScreen.storyboard */,
+				3B6938071F74C4EC00B2569B /* TableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -107,6 +112,9 @@
 				3B6937E11F74A52200B2569B /* AppDelegate.swift */,
 				3B6937EB1F74A52200B2569B /* Assets.xcassets */,
 				3B6937F01F74A52200B2569B /* Info.plist */,
+				3B6938051F74C39400B2569B /* ImageExtention.swift */,
+				3B6937FF1F74AE9700B2569B /* Cache.swift */,
+				3B6938031F74B43200B2569B /* Crop.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -115,8 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				3B6937FC1F74A9B300B2569B /* DataServices.swift */,
-				3B6937FF1F74AE9700B2569B /* Cache.swift */,
-				3B6938031F74B43200B2569B /* Crop.swift */,
 				3B6938011F74AF7700B2569B /* IconDownloader.swift */,
 			);
 			name = Services;
@@ -199,7 +205,9 @@
 				3B6938021F74AF7700B2569B /* IconDownloader.swift in Sources */,
 				3B6937EA1F74A52200B2569B /* ChampLOL.xcdatamodeld in Sources */,
 				3B6937F71F74A57E00B2569B /* Champ.swift in Sources */,
+				3B6938081F74C4EC00B2569B /* TableViewCell.swift in Sources */,
 				3B6937E41F74A52200B2569B /* ViewController.swift in Sources */,
+				3B6938061F74C39400B2569B /* ImageExtention.swift in Sources */,
 				3B6938001F74AE9700B2569B /* Cache.swift in Sources */,
 				3B6937E21F74A52200B2569B /* AppDelegate.swift in Sources */,
 			);

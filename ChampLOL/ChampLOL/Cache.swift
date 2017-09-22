@@ -9,7 +9,7 @@
 import Foundation
 
 class Cache {
-    static var image : NSCache<NSString, AnyObject> = {
+    static var images : NSCache<NSString, AnyObject> = {
         let result = NSCache<NSString, AnyObject>()
         result.countLimit = 30
         result.totalCostLimit = 10 * 1024 * 1024
